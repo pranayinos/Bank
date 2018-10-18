@@ -7,7 +7,6 @@ import com.bank.persistance.AccountRepository;
 
 import java.util.List;
 
-@SuppressWarnings("ConstantConditions")
 public class TransactionPrintingServiceImpl implements TransactionPrintingService {
 
     private final AccountRepository accountRepository;
