@@ -5,12 +5,12 @@
  *
  */
 
-package com.bank;
+package com.bank.simulation;
 
 import com.bank.common.BankFacade;
 import com.bank.common.BankFacadeImpl;
 
-class BankSimulator {
+public class BankSimulator {
     private final BankFacade bankFacade = new BankFacadeImpl();
 
     public void runSimulation() {
