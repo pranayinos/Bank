@@ -8,5 +8,6 @@
 package com.bank.model;
 
 public enum EntryType {
-    CREDIT, DEBIT
+    CREDIT,
+    DEBIT
 }

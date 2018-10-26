@@ -1,15 +1,13 @@
 package com.bank.service;
 
-import com.bank.exception.UserException;
-
 import java.math.BigDecimal;
+
+import com.bank.exception.UserException;
 
 public interface AccountService {
 
-    long createAccount(String name, String address, BigDecimal openingBalance);
+    long createAccount(String name, BigDecimal openingBalance);
 
-    void deleteAccount(long accountNumber) throws UserException;
-
-    String getBalance(long accountNumber) throws UserException;
+    BigDecimal deleteAccount(long accountNumber) throws UserException;
 
 }

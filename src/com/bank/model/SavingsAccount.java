@@ -1,21 +1,17 @@
 package com.bank.model;
 
 import java.math.BigDecimal;
-import java.util.LinkedList;
 import java.util.Objects;
 
-public class SavingsAccount implements BaseAccount {
+public class SavingsAccount implements Account {
 
     private final long accountNumber;
     private final String name;
-    private final LinkedList<TransactionDetail> transactionList = new LinkedList<>();
-    private final String address;
     private BigDecimal balance;
 
-    public SavingsAccount(long accountNumber, String name, String address, BigDecimal balance) {
+    public SavingsAccount(long accountNumber, String name, BigDecimal balance) {
         this.accountNumber = accountNumber;
         this.name = name;
-        this.address = address;
         this.balance = balance;
     }
 
@@ -45,19 +41,11 @@ public class SavingsAccount implements BaseAccount {
     }
 
     @Override
-    public String getAddress() {
-        return this.address;
-    }
-
-    @Override
-    public LinkedList<TransactionDetail> getTransactionList() {
-        return transactionList;
-    }
-
-    @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
         SavingsAccount that = (SavingsAccount) o;
         return accountNumber == that.accountNumber;
     }
@@ -67,18 +55,11 @@ public class SavingsAccount implements BaseAccount {
         return Objects.hash(accountNumber);
     }
 
-
-    @Override
-    public int compareTo(BaseAccount o) {
-        return this.getAccountNumber().compareTo(o.getAccountNumber());
-    }
-
     @Override
     public String toString() {
         return "SavingsAccount{" +
                 "accountNumber=" + accountNumber +
                 ", name='" + name + '\'' +
-                ", address='" + address + '\'' +
                 ", balance=" + balance +
                 '}';
     }

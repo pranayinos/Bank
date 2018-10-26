@@ -1,13 +1,13 @@
 package com.bank.persistance;
 
 import com.bank.exception.UserException;
-import com.bank.model.BaseAccount;
+import com.bank.model.Account;
 
 public interface AccountRepository {
 
-    BaseAccount findByAccountNumber(long accountNumber) throws UserException;
+    Account find(long accountNumber) throws UserException;
 
-    void save(BaseAccount baseAccount);
+    void save(Account account);
 
     void delete(long accountNumber) throws UserException;
 

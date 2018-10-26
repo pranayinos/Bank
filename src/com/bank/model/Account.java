@@ -8,9 +8,8 @@
 package com.bank.model;
 
 import java.math.BigDecimal;
-import java.util.LinkedList;
 
-public interface BaseAccount extends Comparable<BaseAccount> {
+public interface Account {
 
     Long getAccountNumber();
 
@@ -22,7 +21,4 @@ public interface BaseAccount extends Comparable<BaseAccount> {
 
     String getName();
 
-    String getAddress();
-
-    LinkedList<TransactionDetail> getTransactionList();
 }

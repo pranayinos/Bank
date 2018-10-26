@@ -10,31 +10,59 @@ package com.bank.model;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+import jdk.nashorn.internal.ir.annotations.Immutable;
+
+@Immutable
 public class TransactionDetail implements Comparable<TransactionDetail> {
 
     private final EntryType transactionType;
     private final String transactionId;
     private final LocalDateTime transactionDate;
     private final String narration;
-    private final BigDecimal withdrawalAmount;
-    private final BigDecimal depositAmount;
+    private final BigDecimal amount;
     private final BigDecimal closingBalance;
 
-    public TransactionDetail(EntryType transactionType, String transactionId, String narration, BigDecimal withdrawalAmount, BigDecimal depositAmount, BigDecimal closingBalance) {
+    public TransactionDetail(EntryType transactionType, String transactionId, String narration, BigDecimal amount,
+            BigDecimal closingBalance) {
         this.transactionType = transactionType;
         this.transactionId = transactionId;
         this.transactionDate = LocalDateTime.now();
         this.narration = narration;
-        this.withdrawalAmount = withdrawalAmount;
-        this.depositAmount = depositAmount;
+        this.amount = amount;
         this.closingBalance = closingBalance;
     }
 
-    public void printEntry() {
-        System.out.println("|| " + transactionDate + " | " + narration +
-                " | " + roundAndFormatBigDecimal(withdrawalAmount) +
-                " | " + roundAndFormatBigDecimal(depositAmount) +
-                " | " + roundAndFormatBigDecimal(closingBalance) + " ||");
+    public TransactionDetail(TransactionDetail transactionDetail) {
+        this.transactionType = transactionDetail.transactionType;
+        this.transactionId = transactionDetail.transactionId;
+        this.transactionDate = transactionDetail.transactionDate;
+        this.narration = transactionDetail.narration;
+        this.amount = transactionDetail.amount;
+        this.closingBalance = transactionDetail.closingBalance;
+    }
+
+    public EntryType getTransactionType() {
+        return transactionType;
+    }
+
+    public String getTransactionId() {
+        return transactionId;
+    }
+
+    public LocalDateTime getTransactionDate() {
+        return transactionDate;
+    }
+
+    public String getNarration() {
+        return narration;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public BigDecimal getClosingBalance() {
+        return closingBalance;
     }
 
     @Override
@@ -44,16 +72,10 @@ public class TransactionDetail implements Comparable<TransactionDetail> {
                 ", transactionId=" + transactionId +
                 ", transactionDate=" + transactionDate +
                 ", narration='" + narration + '\'' +
-                ", withdrawalAmount=" + withdrawalAmount +
-                ", depositAmount=" + depositAmount +
+                ", amount=" + amount +
                 ", closingBalance=" + closingBalance +
                 '}';
     }
-
-    private String roundAndFormatBigDecimal(BigDecimal amount) {
-        return amount.setScale(2, BigDecimal.ROUND_HALF_EVEN).toPlainString();
-    }
-
 
     @Override
     public int compareTo(TransactionDetail o) {
