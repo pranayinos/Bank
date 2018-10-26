@@ -1,6 +1,6 @@
 package com.bank.exception;
 
 @FunctionalInterface
-public interface Action {
+public interface ActionHandler {
     void execute() throws UserException;
 }

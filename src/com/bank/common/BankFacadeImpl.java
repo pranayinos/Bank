@@ -7,7 +7,7 @@
 
 package com.bank.common;
 
-import com.bank.exception.Action;
+import com.bank.exception.ActionHandler;
 import com.bank.exception.UserException;
 import com.bank.persistance.AccountRepository;
 import com.bank.persistance.SimpleAccountRepository;
@@ -78,7 +78,7 @@ public class BankFacadeImpl implements BankFacade {
         handleExceptions(() -> transactionPrintingService.printAllTransactions(accountNumber), null);
     }
 
-    private void handleExceptions(Action action, String message) {
+    private void handleExceptions(ActionHandler action, String message) {
         try {
             action.execute();
             printUserMessage(message);
