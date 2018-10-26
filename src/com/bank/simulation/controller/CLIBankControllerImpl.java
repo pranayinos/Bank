@@ -1,17 +1,20 @@
-package com.test.simulation.controller;
+package com.bank.simulation.controller;
 
 import java.math.BigDecimal;
 
-import com.bank.common.CurrencyFormatter;
+import com.bank.utilities.CurrencyFormatter;
 import com.bank.facade.BankFacade;
-import com.test.simulation.utilities.ResultPrinter;
+import com.bank.simulation.utilities.ResultPrinter;
 
-public class BankControllerImpl implements BankController {
+/*
+FOR Simulation Purpose only
+ */
+public class CLIBankControllerImpl implements CLIBankController {
 
     private final static String FAILED_TXN_MESSAGE = "Sorry! Couldn't process your transaction";
     private final BankFacade bankFacade;
 
-    public BankControllerImpl(BankFacade bankFacade) {
+    public CLIBankControllerImpl(BankFacade bankFacade) {
         this.bankFacade = bankFacade;
     }
 

@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.Comparator;
 import java.util.UUID;
 
-import com.bank.common.Logger;
+import com.bank.utilities.Logger;
 import com.bank.exception.UserException;
 import com.bank.model.Account;
 import com.bank.model.EntryType;

@@ -1,6 +1,6 @@
-package com.test.simulation;
+package com.bank;
 
-import com.test.simulation.BankSimulator;
+import com.bank.simulation.BankSimulator;
 
 public class Main {
 

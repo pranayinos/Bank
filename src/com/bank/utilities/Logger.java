@@ -1,9 +1,9 @@
-package com.bank.common;
+package com.bank.utilities;
 
 public class Logger {
 
     public static void info(String className, String message) {
-        System.err.println("LOGGER : INFO | " + className + " | THREAD "
+        System.out.println("LOGGER : INFO | " + className + " | THREAD "
                 + Thread.currentThread().getName() + " | " + System.currentTimeMillis() + " | " + message);
     }
 

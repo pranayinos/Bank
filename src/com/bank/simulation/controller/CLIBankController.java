@@ -1,8 +1,10 @@
-package com.test.simulation.controller;
+package com.bank.simulation.controller;
 
 import java.math.BigDecimal;
-
-public interface BankController {
+/*
+FOR Simulation Purpose only
+ */
+public interface CLIBankController {
 
     long createAccount(String name, BigDecimal initialDeposit);
 

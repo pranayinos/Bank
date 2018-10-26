@@ -5,23 +5,26 @@
  *
  */
 
-package com.test.simulation;
+package com.bank.simulation;
 
 import java.math.BigDecimal;
 
-import com.bank.common.Logger;
+import com.bank.utilities.Logger;
 import com.bank.facade.BankFacade;
 import com.bank.facade.BankFacadeImpl;
-import com.test.simulation.controller.BankController;
-import com.test.simulation.controller.BankControllerImpl;
-
+import com.bank.simulation.controller.CLIBankController;
+import com.bank.simulation.controller.CLIBankControllerImpl;
+/*
+FOR Simulation Purpose only
+ */
 public class BankSimulator {
 
-    private final BankController bankController;
+
+    private final CLIBankController bankController;
 
     public BankSimulator() {
         BankFacade bankController = new BankFacadeImpl();
-        this.bankController = new BankControllerImpl(bankController);
+        this.bankController = new CLIBankControllerImpl(bankController);
     }
 
     public static void printToConsole(String output) {

@@ -1,4 +1,4 @@
-package com.bank.common;
+package com.bank.utilities;
 
 import java.math.BigDecimal;
 import java.text.NumberFormat;

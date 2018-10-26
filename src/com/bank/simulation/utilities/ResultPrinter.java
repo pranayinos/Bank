@@ -1,19 +1,22 @@
-package com.test.simulation.utilities;
+package com.bank.simulation.utilities;
 
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import com.bank.common.CurrencyFormatter;
+import com.bank.utilities.CurrencyFormatter;
 import com.bank.exception.SystemException;
 import com.bank.exception.UserException;
 import com.bank.model.TransactionDetail;
-import com.test.simulation.functionalInterfaces.ActionHandler;
-import com.test.simulation.functionalInterfaces.ActionHandlerBigDecimal;
-import com.test.simulation.functionalInterfaces.ActionHandlerTransaction;
-
+import com.bank.simulation.functionalInterfaces.ActionHandler;
+import com.bank.simulation.functionalInterfaces.ActionHandlerBigDecimal;
+import com.bank.simulation.functionalInterfaces.ActionHandlerTransaction;
+/*
+FOR Simulation Purpose only
+ */
 public class ResultPrinter {
+
 
     public static String executeAndHandleExceptions(ActionHandler action, String successMessage,
                                                     String failureMessage) {

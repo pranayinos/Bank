@@ -1,4 +1,4 @@
-package com.test.simulation.functionalInterfaces;
+package com.bank.simulation.functionalInterfaces;
 
 import java.util.List;
 

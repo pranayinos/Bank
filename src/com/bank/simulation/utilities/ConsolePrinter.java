@@ -1,10 +1,13 @@
-package com.test.simulation.utilities;
+package com.bank.simulation.utilities;
 
 import java.math.BigDecimal;
 
 import com.bank.model.TransactionDetail;
-
+/*
+FOR Simulation Purpose only
+ */
 public class ConsolePrinter {
+
 
     public static String printEntry(Integer num, TransactionDetail transactionDetail) {
         return new String(
