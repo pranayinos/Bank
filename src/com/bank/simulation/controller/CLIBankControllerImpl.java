@@ -2,9 +2,9 @@ package com.bank.simulation.controller;
 
 import java.math.BigDecimal;
 
-import com.bank.utilities.CurrencyFormatter;
 import com.bank.facade.BankFacade;
 import com.bank.simulation.utilities.ResultPrinter;
+import com.bank.utilities.CurrencyFormatter;
 
 /*
 FOR Simulation Purpose only
@@ -26,7 +26,7 @@ public class CLIBankControllerImpl implements CLIBankController {
     @Override
     public String deleteAccount(long accountNumber) {
         return ResultPrinter.executeAndHandleExceptions(() -> bankFacade.deleteAccount(accountNumber),
-            "Account #" + accountNumber + "deleted Successfully!! \n Final withdrawal amount :");
+            "Account #" + accountNumber + " deleted Successfully!! \n \tFinal withdrawal amount :");
     }
 
     @Override

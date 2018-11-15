@@ -5,21 +5,21 @@ import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import com.bank.utilities.CurrencyFormatter;
 import com.bank.exception.SystemException;
 import com.bank.exception.UserException;
 import com.bank.model.TransactionDetail;
 import com.bank.simulation.functionalInterfaces.ActionHandler;
 import com.bank.simulation.functionalInterfaces.ActionHandlerBigDecimal;
 import com.bank.simulation.functionalInterfaces.ActionHandlerTransaction;
+import com.bank.utilities.CurrencyFormatter;
+
 /*
 FOR Simulation Purpose only
  */
 public class ResultPrinter {
 
-
     public static String executeAndHandleExceptions(ActionHandler action, String successMessage,
-                                                    String failureMessage) {
+            String failureMessage) {
         try {
             if (action.execute()) {
                 return ConsolePrinter.printUserMessage(successMessage);
@@ -35,7 +35,8 @@ public class ResultPrinter {
         try {
             BigDecimal result = action.execute();
             if (Objects.nonNull(result)) {
-                return ConsolePrinter.printUserMessage(successMessage + CurrencyFormatter.formatNumberToCurrency(result));
+                return ConsolePrinter
+                        .printUserMessage(successMessage + CurrencyFormatter.formatNumberToCurrency(result));
             } else {
                 throw new SystemException("Balanace cannot be null");
             }
@@ -51,7 +52,8 @@ public class ResultPrinter {
                 StringBuilder stringBuilder = new StringBuilder(ConsolePrinter.printStatementHeader());
                 AtomicInteger counter = new AtomicInteger(1);
                 result.forEach(
-                    transactionDetail -> stringBuilder.append("\n"+ ConsolePrinter.printEntry(counter.getAndIncrement(), transactionDetail)));
+                    transactionDetail -> stringBuilder
+                            .append("\n" + ConsolePrinter.printEntry(counter.getAndIncrement(), transactionDetail)));
                 stringBuilder.append(ConsolePrinter.printStatementFooter());
                 return stringBuilder.toString();
             } else {

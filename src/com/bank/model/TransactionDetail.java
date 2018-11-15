@@ -12,7 +12,6 @@ import java.time.LocalDateTime;
 
 import jdk.nashorn.internal.ir.annotations.Immutable;
 
-@Immutable
 public class TransactionDetail implements Comparable<TransactionDetail> {
 
     private final EntryType transactionType;

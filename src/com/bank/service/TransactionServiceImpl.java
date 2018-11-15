@@ -2,25 +2,28 @@ package com.bank.service;
 
 import java.math.BigDecimal;
 import java.util.Comparator;
-import java.util.UUID;
 
-import com.bank.utilities.Logger;
 import com.bank.exception.UserException;
+import com.bank.generator.TransactionIdGenerator;
 import com.bank.model.Account;
 import com.bank.model.EntryType;
 import com.bank.model.TransactionDetail;
 import com.bank.persistance.AccountRepository;
 import com.bank.persistance.TransactionRepository;
+import com.bank.utilities.Logger;
 import com.bank.utilities.Validator;
 
 public class TransactionServiceImpl implements TransactionService {
 
     private final AccountRepository accountRepository;
     private final TransactionRepository transactionRepository;
+    private final TransactionIdGenerator transactionIdGenerator;
 
-    public TransactionServiceImpl(AccountRepository accountRepository, TransactionRepository transactionRepository) {
+    public TransactionServiceImpl(AccountRepository accountRepository, TransactionRepository transactionRepository,
+            TransactionIdGenerator transactionIdGenerator) {
         this.accountRepository = accountRepository;
         this.transactionRepository = transactionRepository;
+        this.transactionIdGenerator = transactionIdGenerator;
     }
 
     @Override
@@ -66,7 +69,7 @@ public class TransactionServiceImpl implements TransactionService {
         Logger.info(this.getClass().getName(), " Depositing :" + depositAmount + " to account : " + this.toString());
         synchronized (account) {
             account.addToBalance(depositAmount);
-            TransactionDetail entry = new TransactionDetail(EntryType.CREDIT, UUID.randomUUID().toString(),
+            TransactionDetail entry = new TransactionDetail(EntryType.CREDIT, transactionIdGenerator.generate(),
                     "Cash Deposit", depositAmount, account.getBalance());
             transactionRepository.save(accountNumber, entry);
         }
@@ -82,7 +85,7 @@ public class TransactionServiceImpl implements TransactionService {
             " Withdrawing :" + withdrawalAmount + " from account : " + this.toString());
         synchronized (account) {
             account.subtractFromBalance(withdrawalAmount);
-            TransactionDetail entry = new TransactionDetail(EntryType.DEBIT, UUID.randomUUID().toString(),
+            TransactionDetail entry = new TransactionDetail(EntryType.DEBIT, transactionIdGenerator.generate(),
                     "Cash Withdrawal", withdrawalAmount, account.getBalance());
             transactionRepository.save(accountNumber, entry);
         }
@@ -90,7 +93,7 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     private void accountHasSufficientBalance(Account account, BigDecimal amount) throws UserException {
-        if (account.getBalance().compareTo(amount) <= 0) {
+        if (account.getBalance().compareTo(amount) < 0) {
             throw new UserException("Insufficient funds, cannot process txn of : " + amount.toPlainString());
         }
     }

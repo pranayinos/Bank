@@ -9,16 +9,16 @@ package com.bank.simulation;
 
 import java.math.BigDecimal;
 
-import com.bank.utilities.Logger;
 import com.bank.facade.BankFacade;
 import com.bank.facade.BankFacadeImpl;
 import com.bank.simulation.controller.CLIBankController;
 import com.bank.simulation.controller.CLIBankControllerImpl;
+import com.bank.utilities.Logger;
+
 /*
 FOR Simulation Purpose only
  */
 public class BankSimulator {
-
 
     private final CLIBankController bankController;
 

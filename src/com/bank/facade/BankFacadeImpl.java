@@ -11,6 +11,10 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import com.bank.exception.UserException;
+import com.bank.generator.AccountNumberGenerator;
+import com.bank.generator.AccountNumberGeneratorImpl;
+import com.bank.generator.TransactionIdGenerator;
+import com.bank.generator.TransactionIdGeneratorImpl;
 import com.bank.model.TransactionDetail;
 import com.bank.persistance.AccountRepository;
 import com.bank.persistance.AccountRepositoryImpl;
@@ -27,8 +31,12 @@ public class BankFacadeImpl implements BankFacade {
     public BankFacadeImpl() {
         AccountRepository accountRepository = new AccountRepositoryImpl();
         TransactionRepository transactionRepository = new TransactionRepositoryImpl();
-        this.transactionService = new TransactionServiceImpl(accountRepository, transactionRepository);
-        this.accountService = new AccountServiceImpl(accountRepository, this.transactionService, transactionRepository);
+        AccountNumberGenerator accountNumberGenerator = new AccountNumberGeneratorImpl();
+        TransactionIdGenerator transactionIdGenerator = new TransactionIdGeneratorImpl();
+        this.transactionService = new TransactionServiceImpl(accountRepository, transactionRepository,
+                transactionIdGenerator);
+        this.accountService = new AccountServiceImpl(this.transactionService, accountRepository, transactionRepository,
+                accountNumberGenerator, transactionIdGenerator);
         this.statementService = new StatementServiceImpl(transactionRepository);
     }
 
